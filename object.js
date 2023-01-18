@@ -10,19 +10,28 @@ fs.readFile('test.txt', (err, data) => {
 
     let emailArray = textString.match(emailReg); 
 
-    let domainMap=new Map();
+    let object = emailArray.reduce(function(count,currentValue){
+        return (count[currentValue]? ++count[currentValue] : (count[currentValue] = 1),
+        count);
+    },
+{});
 
-    for (let i=0;i<emailArray.length;i++){
-        let counter=0;
-        for (let j=0;j<emailArray.length;j++){
-            if (emailArray[i]==emailArray[j]){
-                counter++;
-            }
+console.log(object);
 
-        domainMap.set(emailArray[i],counter);
-        }
-    }
+    // For-loop and map solution:
+    //let domainMap=new Map();
 
-    console.log(domainMap);
+    // for (let i=0;i<emailArray.length;i++){
+    //     let counter=0;
+    //     for (let j=0;j<emailArray.length;j++){
+    //         if (emailArray[i]==emailArray[j]){
+    //             counter++;
+    //         }
 
+    //     domainMap.set(emailArray[i],counter);
+    //     }
+    // }
+
+    // console.log(domainMap);
 })
+
