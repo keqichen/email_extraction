@@ -5,16 +5,18 @@ fs.readFile('test.txt', (err, data) => {
 
     let textString = data.toString();
 
-    let regex = /@softwire.com\b/;
-    let counter=0;
+    let regex = /@softwire\.com\b/gi;
+    let array = textString.match(regex);
 
-    for (let i=0;i<textString.length;i++){
-        let result = textString.substring(i,i+13).match(regex);
-        if (result !== null){
-            counter++;
-        }
-    }
-
-    console.log(counter);
+    console.log(array.length);
 
 })
+
+
+    // The following wrong solution gives 301:
+    // for (let i = 0; i < textString.length; i++) {
+    //     let result = textString.substring(i, i + 13).match(regex);
+    //     if (result !== null) {
+    //         counter++;
+    //     }
+    // }
